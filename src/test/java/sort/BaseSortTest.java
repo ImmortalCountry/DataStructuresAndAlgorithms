@@ -1,4 +1,4 @@
-package Sort;
+package sort;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
  * @Created by sundy
  */
 class BaseSortTest {
-
-
 
     @Test
     void bubbleSort() {
