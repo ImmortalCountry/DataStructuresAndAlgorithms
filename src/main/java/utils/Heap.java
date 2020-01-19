@@ -67,10 +67,11 @@ public class Heap {
         }
     }
 
-    public void sort(int[] arr, int n) {
+    public void sort() {
         buildHeap(arr, n);
         int k = n;
         while (k > 1) {
+            swap(arr, 1, k);
             --k;
             heapify(arr, k, 1);
         }

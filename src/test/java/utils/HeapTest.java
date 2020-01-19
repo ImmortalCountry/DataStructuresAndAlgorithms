@@ -17,8 +17,8 @@ public class HeapTest {
     @Before
     public void init() {
         heap = new Heap(7);
-        for (int item : arr) {
-            heap.insert(item);
+        for (int i = 1; i < arr.length; i++) {
+            heap.insert(arr[i]);
         }
     }
 
@@ -31,7 +31,11 @@ public class HeapTest {
 
     @Test
     public void sort() {
-        heap.sort(arr, 7);
+        heap.sort();
+    }
+    @Test
+    public void empty(){
+
     }
 
     @After
