@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -83,29 +85,68 @@ public class BinarySearchTree {
 
 
     /**
-     * 非递归实现
+     * 非递归实现前序遍历
+     *
      * @param tree
      */
-    public void preOrder(Node tree){
+    public void preOrder(Node tree) {
         Stack<Node> stack = new Stack<>();
         stack.push(tree);
-        while(!stack.empty()){
+        while (!stack.empty()) {
             Node cur = stack.pop();
             System.out.print(cur.data + " ");
-            if (cur.right != null){
+            if (cur.right != null) {
                 stack.push(cur.right);
             }
-            if (cur.left != null){
+            if (cur.left != null) {
                 stack.push(cur.left);
             }
         }
     }
 
-    public void inOrder(Node tree){
+    /**
+     * 非递归实现中序遍历
+     * @param tree
+     */
+    public void inOrder(Node tree) {
         Stack<Node> stack = new Stack<>();
-        stack.push(tree);
-        while(!stack.empty()){
+        Node cur = tree;
+        while (!stack.empty() || cur != null) {
+            if (cur != null){
+                stack.push(cur);
+                cur = cur.left;
+            } else{
+                cur = stack.pop();
+                System.out.print(cur.data + " ");
+                cur = cur.right;
+            }
+        }
+    }
 
+    /**
+     * 非递归实现后序遍历
+     * @param Tree
+     */
+    public void postOrder(Node Tree){
+        Stack<Node> stack = new Stack<>();
+        Map<Integer, Integer> map = new HashMap<>();
+        Node cur = tree;
+        while(!stack.empty() || cur != null){
+            if (cur != null){
+                stack.push(cur);
+                map.put(cur.data, 1);
+                cur = cur.left;
+            }else {
+                cur = stack.peek();
+                if (map.get(cur.data) == 2){
+                    stack.pop();
+                    System.out.print(cur.data + " ");
+                    cur = null;
+                }else {
+                    map.put(cur.data, 2);
+                    cur = cur.right;
+                }
+            }
         }
     }
 

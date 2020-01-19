@@ -31,4 +31,18 @@ public class BinarySearchTreeTest {
         System.out.println();
         binarySearchTree.preOrder(binarySearchTree.getTree());
     }
+
+    @Test
+    public void inOrder(){
+        binarySearchTree.inOrderR(binarySearchTree.getTree());
+        System.out.println();
+        binarySearchTree.inOrder(binarySearchTree.getTree());
+    }
+
+    @Test
+    public void postOrder(){
+        binarySearchTree.postOrderR(binarySearchTree.getTree());
+        System.out.println();
+        binarySearchTree.postOrder(binarySearchTree.getTree());
+    }
 }
