@@ -40,6 +40,91 @@ public class BinarySearchTree {
         }
     }
 
+    public Node find(int data) {
+        Node p = tree;
+        while (p != null) {
+            if (p.data > data) {
+                p = p.left;
+            } else if (p.data < data) {
+                p = p.right;
+            } else {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public void delete(int data) {
+        // p 指向要删除的节点， 初始化指向根节点。
+        Node p = tree;
+        // pp 记录的是 p 的父节点
+        Node pp = null;
+        while (p != null && p.data != data) {
+            pp = p;
+            if (p.data < data) {
+                p = p.right;
+            } else if (p.data > data) {
+                p = p.left;
+            } else break;
+        }
+        if (p == null) {
+            // 没有找到
+            return;
+        }
+
+        // 要删除的节点有两个字节点
+        if (p.left != null && p.right != null) {
+            // 查找右子树中的最小节点
+            Node minP = p.right;
+            // minPP表示minP的父节点
+            Node minPP = minP;
+            while (minP.left != null) {
+                minPP = minP;
+                minP = minP.left;
+            }
+            p.data = minP.data;
+            p = minP; // 下面就变成了删除minP了
+            pp = minPP;
+
+        }
+        // 删除的节点是叶子节点或者仅有一个节点
+        Node child; // p 的子节点
+
+        if (p.left != null) {
+            child = p.left;
+        } else if (p.right != null) {
+            child = p.right;
+        } else child = null;
+        if (pp == null) {
+            tree = child;
+        } else if (pp.left == p) {
+            pp.left = child;
+        } else {
+            pp.right = child;
+        }
+    }
+
+    public Node findMin(){
+        if (tree == null){
+            return null;
+        }
+        Node p = tree;
+        while (p.left != null){
+            p = p.left;
+        }
+        return p;
+    }
+    public Node findMax(){
+        if (tree == null){
+            return null;
+        }
+        Node p = tree;
+        while (p.right != null){
+            p = p.right;
+        }
+        return p;
+    }
+
     public Node getTree() {
         return tree;
     }
@@ -106,16 +191,17 @@ public class BinarySearchTree {
 
     /**
      * 非递归实现中序遍历
+     *
      * @param tree
      */
     public void inOrder(Node tree) {
         Stack<Node> stack = new Stack<>();
         Node cur = tree;
         while (!stack.empty() || cur != null) {
-            if (cur != null){
+            if (cur != null) {
                 stack.push(cur);
                 cur = cur.left;
-            } else{
+            } else {
                 cur = stack.pop();
                 System.out.print(cur.data + " ");
                 cur = cur.right;
@@ -125,24 +211,25 @@ public class BinarySearchTree {
 
     /**
      * 非递归实现后序遍历
+     *
      * @param Tree
      */
-    public void postOrder(Node Tree){
+    public void postOrder(Node Tree) {
         Stack<Node> stack = new Stack<>();
         Map<Integer, Integer> map = new HashMap<>();
         Node cur = tree;
-        while(!stack.empty() || cur != null){
-            if (cur != null){
+        while (!stack.empty() || cur != null) {
+            if (cur != null) {
                 stack.push(cur);
                 map.put(cur.data, 1);
                 cur = cur.left;
-            }else {
+            } else {
                 cur = stack.peek();
-                if (map.get(cur.data) == 2){
+                if (map.get(cur.data) == 2) {
                     stack.pop();
                     System.out.print(cur.data + " ");
                     cur = null;
-                }else {
+                } else {
                     map.put(cur.data, 2);
                     cur = cur.right;
                 }
@@ -154,6 +241,10 @@ public class BinarySearchTree {
         private int data;
         private Node left;
         private Node right;
+
+        public int getData() {
+            return data;
+        }
 
         public Node(int data) {
             this.data = data;
