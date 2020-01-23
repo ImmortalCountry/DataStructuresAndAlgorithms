@@ -56,7 +56,7 @@ public class ToPoSort {
         }
         boolean[] visited = new boolean[v];
         for (int i = 0; i < v; i++){
-            if (visited[i] == false){
+            if (!visited[i]){
                 visited[i] = true;
                 dfs(i, inverseAdj, visited);
             }
