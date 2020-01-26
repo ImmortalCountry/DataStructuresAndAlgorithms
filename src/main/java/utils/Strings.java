@@ -2,7 +2,6 @@ package utils;
 
 public class Strings {
     private boolean found = false;
-    private int pos = -1;
 
     public int bf(String tag, String pth) {
         int tagL = tag.length();
