@@ -7,23 +7,28 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class StringsTest {
-    Strings strings;
     String tag;
     String pth;
     int pos;
+
     @Before
-    public void init(){
-        strings = new Strings();
+    public void init() {
         tag = "abcdabcf";
-        pth = "dab";
+        pth = "b";
     }
+
     @Test
     public void bf() {
-        pos = strings.bf(tag, pth);
+        pos = Strings.bf(tag.toCharArray(), pth.toCharArray());
+    }
+
+    @Test
+    public void bm() {
+        pos = Strings.bm(tag.toCharArray(), pth.toCharArray());
     }
 
     @After
-    public void print(){
+    public void print() {
         System.out.println(pos);
     }
 }
