@@ -9,15 +9,17 @@ public class QueenOfEight {
 
     /**
      * 调用方式 cal8queens(0)
+     *
      * @param row
      */
-    public static void cal8queens(int row){
+    public static void cal8queens(int row) {
         // 8 个旗子都放好了
-        if (row == 8){
+        if (row == 8) {
             printQueens(result);
+            return;
         }
-        for (int column = 0; column < 8; column++){
-            if (isOk(row, column)){
+        for (int column = 0; column < 8; column++) {
+            if (isOk(row, column)) {
                 result[row] = column;
                 cal8queens(row + 1);
             }
@@ -27,15 +29,15 @@ public class QueenOfEight {
     private static boolean isOk(int row, int column) {
         int leftUp = column - 1;
         int rightUp = column + 1;
-        for (int i = row - 1; i >= 0; i--){
+        for (int i = row - 1; i >= 0; i--) {
             // 第 i 行的 column 列有棋子吗
-            if (result[i] == column){
+            if (result[i] == column) {
                 return false;
             }
-            if (leftUp >= 0 && result[i] == leftUp){
+            if (leftUp >= 0 && result[i] == leftUp) {
                 return false;
             }
-            if (rightUp < 8 && result[i] == rightUp){
+            if (rightUp < 8 && result[i] == rightUp) {
                 return false;
             }
             leftUp--;
@@ -45,11 +47,11 @@ public class QueenOfEight {
     }
 
     private static void printQueens(int[] result) {
-        for (int row = 0; row < 8; row++){
-            for (int column = 0; column < 8; column++){
-                if (result[row] == column){
+        for (int row = 0; row < 8; row++) {
+            for (int column = 0; column < 8; column++) {
+                if (result[row] == column) {
                     System.out.print("Q ");
-                }
+                }else System.out.print("* ");
             }
             System.out.println();
         }
