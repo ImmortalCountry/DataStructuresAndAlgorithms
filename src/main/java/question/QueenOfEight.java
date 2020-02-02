@@ -51,7 +51,7 @@ public class QueenOfEight {
             for (int column = 0; column < 8; column++) {
                 if (result[row] == column) {
                     System.out.print("Q ");
-                }else System.out.print("* ");
+                } else System.out.print("* ");
             }
             System.out.println();
         }
