@@ -13,7 +13,7 @@ public class BaseBug {
     // 假设背包w：100，物品n：10，物品重量存储在a中
     // f(0, 0, a, 10, 100)
 
-    public void f(int i, int cw, int[] items, int n, int w) {
+    public static void f(int i, int cw, int[] items, int n, int w) {
         if (cw == w || i == n) {
             if (cw > maxW) maxW = cw;
             return;
