@@ -95,4 +95,38 @@ public class Strings {
             }
         }
     }
+
+    public static int kmp(char[] tag, char[] pth) {
+        int tagL = tag.length;
+        int pthL = pth.length;
+        int[] next = getNexts(pth, pthL);
+        int j = 0;
+        for (int i = 0; i < tagL; i++) {
+            while (j > 0 && tag[i] != pth[j]) {
+                j = next[j - 1] + 1;
+            }
+            if (tag[i] == pth[j]){
+                j++;
+            }
+            if (j == pthL){
+                return i - pthL + 1;            }
+        }
+        return -1;
+    }
+
+    private static int[] getNexts(char[] pth, int pthL) {
+        int[] next = new int[pthL];
+        next[0] = -1;
+        int k = -1;
+        for (int i = 1; i < pthL; i++){
+            while (k != -1 && pth[k + 1] != pth[i]){
+                k = next[k];
+            }
+            if (pth[k+1] == pth[i]){
+                k++;
+            }
+            next[i] = k;
+        }
+        return next;
+    }
 }
